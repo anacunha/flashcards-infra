@@ -1,16 +1,19 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as amplify from '@aws-cdk/aws-amplify-alpha';
 
 export class FlashcardsStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    const amplifyApp = new amplify.App(this, 'FlashcardsApp', {
+      sourceCodeProvider: new amplify.GitHubSourceCodeProvider({
+        owner: 'anacunha',
+        repository: 'flashcards-app',
+        oauthToken: cdk.SecretValue.secretsManager('github-token'),
+      })
+    });
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'FlashcardsQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    amplifyApp.addBranch('main');
   }
 }
