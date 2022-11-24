@@ -8,15 +8,9 @@ export class FlashcardsStack extends cdk.Stack {
     super(scope, id, props);
 
     const amplifyBackend = new AmplifyExportedBackend(this, 'AmplifyBackend', {
-      amplifyEnvironment: 'dev',
-      path: path.resolve(__dirname, 'amplify-export-flashcards'),
+      // amplifyEnvironment: cdk.Stack.of(this).region + cdk.Stack.of(this).account,
+      amplifyEnvironment: 'prod',
+      path: path.resolve(__dirname, 'amplify-export-flashcardsapp'),
     });
-
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'FlashcardsQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
   }
 }
