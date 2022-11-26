@@ -1,0 +1,13 @@
+name: Deploy
+
+on:
+  repository_dispatch:
+    types: [deploy-backend]
+
+jobs:
+  deploy:
+    runs-on: macos-latest
+
+    steps:
+      - name: Test payload
+        run: echo ${{ github.event.client_payload.message }}
