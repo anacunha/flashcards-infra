@@ -9,5 +9,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Test payload
-        run: echo ${{ github.event.client_payload.message }}
+      - name: Download S3 file
+        run: |
+          curl ${{ github.event.client_payload.message }} -o export-amplify-stack.zip
+          ls
