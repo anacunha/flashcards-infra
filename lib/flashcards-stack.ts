@@ -10,7 +10,7 @@ export class FlashcardsStack extends cdk.Stack {
     const amplifyBackend = new AmplifyExportedBackend(this, 'AmplifyBackend', {
       // amplifyEnvironment: cdk.Stack.of(this).region + cdk.Stack.of(this).account,
       amplifyEnvironment: 'prod',
-      path: path.resolve(__dirname, 'amplify-export-flashcardsapp'),
+      path: path.resolve(__dirname, 'export-amplify-stack'),
     });
   }
 }
