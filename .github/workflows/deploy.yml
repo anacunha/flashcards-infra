@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Checkout 📥
         uses: actions/checkout@v3
-        
+
       - name: Download S3 file
         run: |
-          curl "${{ github.event.client_payload.url }}" -o export-amplify-stack.zip
+          curl "${{ github.event.client_payload.url }}" -o amplify-export.zip
           unzip export-amplify-stack -d ./lib/
           ls
           ls ./lib/
