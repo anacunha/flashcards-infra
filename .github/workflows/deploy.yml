@@ -15,4 +15,6 @@ jobs:
       - name: Download S3 file
         run: |
           curl "${{ github.event.client_payload.url }}" -o export-amplify-stack.zip
+          unzip export-amplify-stack -d ./lib/
           ls
+          ls ./lib/
