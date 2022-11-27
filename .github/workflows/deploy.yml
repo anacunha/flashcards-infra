@@ -17,7 +17,7 @@ jobs:
           curl "${{ github.event.client_payload.url }}" -o amplify-export.zip
           unzip amplify-export -d ./lib/
 
-      - name: Setup Node ✅
+      - name: Setup Node 🟢
         uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -26,4 +26,4 @@ jobs:
         run: npm ci
 
       - name: CDK Deploy 🏗
-        run: npx cdk deploy --require-approval never
+        run: npx cdk deploy --all --require-approval never
