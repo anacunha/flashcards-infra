@@ -32,6 +32,8 @@ export class FlashcardsStack extends cdk.Stack {
         'USER_POOL_ID': amplifyBackend.authNestedStack().userPool().ref,
         'USER_POOL_CLIENT_ID': identityProviders[0]?.clientId as string,
         'GRAPHQL_ENDPOINT': amplifyBackend.graphqlNestedStacks().graphQLAPI().attrGraphQlUrl,
+        'SPEECH_GENERATOR_VOICE_ID': amplifyBackend.nestedStackByCategortService('predictions', 'Polly')[0].includedTemplate.getOutput('language').toString(),
+        'SPEECH_GENERATOR_LANGUAGE_CODE': amplifyBackend.nestedStackByCategortService('predictions', 'Polly')[0].includedTemplate.getOutput('voice').toString(),
       },
       buildSpec: codebuild.BuildSpec.fromObjectToYaml({
         version: '1.0',
@@ -49,6 +51,8 @@ export class FlashcardsStack extends cdk.Stack {
                 'echo "REACT_APP_USER_POOL_ID"="$USER_POOL_ID" >> .env',
                 'echo "REACT_APP_USER_POOL_CLIENT_ID"="$USER_POOL_CLIENT_ID" >> .env',
                 'echo "REACT_APP_GRAPHQL_ENDPOINT"="$GRAPHQL_ENDPOINT" >> .env',
+                'echo "REACT_APP_SPEECH_GENERATOR_VOICE_ID"="$SPEECH_GENERATOR_VOICE_ID" >> .env',
+                'echo "REACT_APP_SPEECH_GENERATOR_LANGUAGE_CODE"="$SPEECH_GENERATOR_LANGUAGE_CODE" >> .env',
                 'npm run build',
               ]
             }
