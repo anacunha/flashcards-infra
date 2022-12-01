@@ -39,16 +39,16 @@ export class FlashcardsStack extends cdk.Stack {
           phases: {
             preBuild: {
               commands: [
-                'echo "REACT_APP_REGION"="$REGION" >> .env',
-                'echo "REACT_APP_IDENTITY_POOL_ID"="$IDENTITY_POOL_ID" >> .env',
-                'echo "REACT_APP_USER_POOL_ID"="$USER_POOL_ID" >> .env',
-                'echo "REACT_APP_USER_POOL_CLIENT_ID"="$USER_POOL_CLIENT_ID" >> .env',
-                'echo "REACT_APP_GRAPHQL_ENDPOINT"="$GRAPHQL_ENDPOINT" >> .env',
                 'npm ci',
               ]
             },
             build: {
               commands: [
+                'echo "REACT_APP_REGION"="$REGION" >> .env',
+                'echo "REACT_APP_IDENTITY_POOL_ID"="$IDENTITY_POOL_ID" >> .env',
+                'echo "REACT_APP_USER_POOL_ID"="$USER_POOL_ID" >> .env',
+                'echo "REACT_APP_USER_POOL_CLIENT_ID"="$USER_POOL_CLIENT_ID" >> .env',
+                'echo "REACT_APP_GRAPHQL_ENDPOINT"="$GRAPHQL_ENDPOINT" >> .env',
                 'npm run build',
               ]
             }
