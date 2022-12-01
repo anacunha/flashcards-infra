@@ -55,8 +55,9 @@ export class FlashcardsStack extends cdk.Stack {
           },
           artifacts: {
             baseDirectory: 'build',
-            files:
-              - '**/*'
+            files: [
+              '**/*'
+            ],
           },
         },
       }),
