@@ -3,6 +3,7 @@ import * as path from 'path';
 import { Construct } from 'constructs';
 import { AmplifyExportedBackend } from '@aws-amplify/cdk-exported-backend';
 import * as amplify from '@aws-cdk/aws-amplify-alpha';
+import * as codebuild from 'aws-cdk-lib/aws-codebuild';
 import * as customResource from 'aws-cdk-lib/custom-resources';
 import { CfnIdentityPool } from 'aws-cdk-lib/aws-cognito';
 
@@ -32,6 +33,33 @@ export class FlashcardsStack extends cdk.Stack {
         'USER_POOL_CLIENT_ID': identityProviders[0]?.clientId as string,
         'GRAPHQL_ENDPOINT': amplifyBackend.graphqlNestedStacks().graphQLAPI().attrGraphQlUrl,
       },
+      buildSpec: codebuild.BuildSpec.fromObjectToYaml({
+        version: '1.0',
+        frontend: {
+          phases: {
+            preBuild: {
+              commands: [
+                'echo "REACT_APP_REGION"="$REGION" >> .env',
+                'echo "REACT_APP_IDENTITY_POOL_ID"="$IDENTITY_POOL_ID" >> .env',
+                'echo "REACT_APP_USER_POOL_ID"="$USER_POOL_ID" >> .env',
+                'echo "REACT_APP_USER_POOL_CLIENT_ID"="$USER_POOL_CLIENT_ID" >> .env',
+                'echo "REACT_APP_GRAPHQL_ENDPOINT"="$GRAPHQL_ENDPOINT" >> .env',
+                'npm ci',
+              ]
+            },
+            build: {
+              commands: [
+                'npm run build',
+              ]
+            }
+          },
+          artifacts: {
+            baseDirectory: 'build',
+            files:
+              - '**/*'
+          },
+        },
+      }),
     });
 
     amplifyApp.addBranch(branch);
