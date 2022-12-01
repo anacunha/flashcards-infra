@@ -46,13 +46,13 @@ export class FlashcardsStack extends cdk.Stack {
             },
             build: {
               commands: [
-                'echo "REACT_APP_REGION"="$REGION" >> .env',
-                'echo "REACT_APP_IDENTITY_POOL_ID"="$IDENTITY_POOL_ID" >> .env',
-                'echo "REACT_APP_USER_POOL_ID"="$USER_POOL_ID" >> .env',
-                'echo "REACT_APP_USER_POOL_CLIENT_ID"="$USER_POOL_CLIENT_ID" >> .env',
-                'echo "REACT_APP_GRAPHQL_ENDPOINT"="$GRAPHQL_ENDPOINT" >> .env',
-                'echo "REACT_APP_SPEECH_GENERATOR_VOICE_ID"="$SPEECH_GENERATOR_VOICE_ID" >> .env',
-                'echo "REACT_APP_SPEECH_GENERATOR_LANGUAGE_CODE"="$SPEECH_GENERATOR_LANGUAGE_CODE" >> .env',
+                'echo "REACT_APP_AWS_REGION"="$REGION" >> .env',
+                'echo "REACT_APP_AWS_COGNITO_IDENTITY_POOL_ID"="$IDENTITY_POOL_ID" >> .env',
+                'echo "REACT_APP_AWS_COGNITO_USER_POOL_ID"="$USER_POOL_ID" >> .env',
+                'echo "REACT_APP_AWS_COGNITO_USER_POOL_WEB_CLIENT_ID"="$USER_POOL_CLIENT_ID" >> .env',
+                'echo "REACT_APP_AWS_APPSYNC_API"="$GRAPHQL_ENDPOINT" >> .env',
+                'echo "REACT_APP_AWS_POLLY_VOICE_ID"="$SPEECH_GENERATOR_VOICE_ID" >> .env',
+                'echo "REACT_APP_AWS_POLLY_LANGUAGE_CODE"="$SPEECH_GENERATOR_LANGUAGE_CODE" >> .env',
                 'npm run build',
               ]
             }
