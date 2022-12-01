@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@aws-amplify/cdk-exported-backend": "^0.0.6",
+    "@aws-cdk/aws-amplify-alpha": "^2.53.0-alpha.0",
     "aws-cdk-lib": "2.53.0",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
