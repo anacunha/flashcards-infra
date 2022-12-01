@@ -32,8 +32,8 @@ export class FlashcardsStack extends cdk.Stack {
         'USER_POOL_ID': amplifyBackend.authNestedStack().userPool().ref,
         'USER_POOL_CLIENT_ID': identityProviders[0]?.clientId as string,
         'GRAPHQL_ENDPOINT': amplifyBackend.graphqlNestedStacks().graphQLAPI().attrGraphQlUrl,
-        'SPEECH_GENERATOR_VOICE_ID': amplifyBackend.nestedStackByCategortService('predictions', 'Polly')[0].includedTemplate.getOutput('language').toString(),
-        'SPEECH_GENERATOR_LANGUAGE_CODE': amplifyBackend.nestedStackByCategortService('predictions', 'Polly')[0].includedTemplate.getOutput('voice').toString(),
+        'SPEECH_GENERATOR_VOICE_ID': amplifyBackend.nestedStackByCategortService('predictions', 'Polly')[0].includedTemplate.getOutput('language').value,
+        'SPEECH_GENERATOR_LANGUAGE_CODE': amplifyBackend.nestedStackByCategortService('predictions', 'Polly')[0].includedTemplate.getOutput('voice').value,
       },
       buildSpec: codebuild.BuildSpec.fromObjectToYaml({
         version: '1.0',
